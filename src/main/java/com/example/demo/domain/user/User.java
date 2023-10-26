@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Entity
+@Entity(name = "users")
 @Table(name = "users")
 @Getter
 @Setter
@@ -19,9 +19,9 @@ public class User {
     private Long id;
 
     private String name;
-
+    @Column(unique = true)
     private String document;
-
+    @Column(unique = true)
     private String email;
 
     private String password;

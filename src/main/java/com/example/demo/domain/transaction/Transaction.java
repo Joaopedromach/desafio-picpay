@@ -2,6 +2,8 @@ package com.example.demo.domain.transaction;
 import com.example.demo.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 
@@ -21,15 +23,17 @@ public class Transaction {
 
     private BigDecimal amount;
 
-    @ManyToMany
+    @JdbcTypeCode(SqlTypes.JSON)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payer_id")
     private User payer;
 
-    @ManyToMany
+    @JdbcTypeCode(SqlTypes.JSON)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payee_id")
     private User payee;
 
-    private LocalDateTime transactiontype;
+    private LocalDateTime transactiontime;
 
 
 }
